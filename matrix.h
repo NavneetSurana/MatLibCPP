@@ -1,6 +1,7 @@
 #ifndef __MATRIX_H
 #define __MATRIX_H
 #include <utility>
+#include <vector>
 template<typename T>
 class matrix{
 public:
@@ -11,10 +12,10 @@ public:
 //DESTURCTOR
 	~matrix();
 //OPERATOR OVERLOADING
-	inline T& operator () (int& ,int& );
-	//void operator = (matrix<T>&);
-	template<typename F>
-	matrix<T> operator + (matrix<F>&);
+	inline T& operator () (const int& ,const int& );
+	//matrix<T>& operator = (matrix<T>&);
+	//template<typename F>
+	matrix<T> operator + (matrix<T>&);
 	template<typename F>
 	matrix<T> operator - (matrix<F>&);
 	template<typename F>
@@ -46,8 +47,8 @@ public:
 	template<typename F1,typename F2>
 	matrix<F2> mod_exp(F1 ,F2); //
 private:
-	T** __array;
+	std::vector<std::vector<T>> __array;
 	int size_x;
 	int size_y;
 };
-#endif
+#endif //MATRIX_H
