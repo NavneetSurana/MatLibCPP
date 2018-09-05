@@ -5,49 +5,33 @@ template<typename T>
 class matrix{
 public:
 //CONSTRUCTORS
-	matrix();
-	matrix(const int&,const int&);
-	matrix(const int&,const int&,const int&);
+    matrix();
+    matrix(const int&,const int&);
+    matrix(const int&,const int&,const int&);
 //DESTURCTOR
-	~matrix();
+    ~matrix();
 //OPERATOR OVERLOADING
-	inline T& operator () (int& ,int& );
-	//void operator = (matrix<T>&);
-	template<typename F>
-	matrix<T> operator + (matrix<F>&);
-	template<typename F>
-	matrix<T> operator - (matrix<F>&);
-	template<typename F>
-	matrix<T> operator * (matrix<F>&);
-	template<typename F>
-	matrix<T> operator / (const F&);
-	template<typename F>
-	matrix<T> operator * (const F&);
-	template<typename F>
-	matrix<T> operator % (const F&);
-	template<typename F>
-	void operator += (matrix<F>&);
-	template<typename F>
-	void operator -= (matrix<F>&);
-	template<typename F>
-	void operator *= (matrix<F>&);
-	template<typename F>
-	void operator *= (const F&);
-	template<typename F>
-	void operator /= (const F&);
-	template<typename F>
-	void operator %= (const F&);
+    inline T& operator () (int& ,int& );
+    //void operator = (matrix<T>&);
+    matrix<T> operator + (matrix<T>&);
+    matrix<T> operator - (matrix<T>&);
+    matrix<T> operator * (matrix<T>&);
+    matrix<T> operator * (const auto&);
+    matrix<T> operator % (const auto&);
+    void operator += (matrix<T>&);
+    void operator -= (matrix<T>&);
+    void operator *= (matrix<T>&);
+    void operator *= (const auto&);
+    void operator %= (const auto&);
 //INPUT/OUTPUT
-	void print();
+    void print();
 //OTHERS
-	const std::pair<int,int> dim();
-	template<typename F>
-	matrix<T> exp(F);
-	template<typename F1,typename F2>
-	matrix<F2> mod_exp(F1 ,F2); //
+    const std::pair<int,int> dim();
+    matrix<T> exp(T);
+    matrix<T> mod_exp(T ,T);
 private:
-	T** __array;
-	int size_x;
-	int size_y;
+    T** array;
+    int size_x;
+    int size_y;
 };
 #endif
