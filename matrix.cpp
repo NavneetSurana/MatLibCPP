@@ -44,11 +44,11 @@ matrix<T>:: matrix(const int& n,const int& m,const int& val): __array(new T*[n])
 //------------------//
 template <typename T>
 matrix<T>:: ~matrix(){
-	for(int i=0;i<size_x;i++){
-		delete[] __array[i];
+	//std::cout<<"DESTURCTOR"<<std::endl;
+	/*for(int i=0;i<size_x;i++){
+		delete[] this->__array[i];
 	}
-	delete[] __array;
-	__array=NULL;
+	delete[] this->__array;*/
 }
 //-----------------//
 
@@ -99,7 +99,10 @@ matrix<T> matrix<T>::operator * (const F& val){
 template<typename T>
 template<typename F>
 matrix<T> matrix<T>::operator / (const F& val){
-	if(val==0) throw "Division by zero";
+	if(val==0){
+		std::cerr<<"In File "<<__FILE__<<"\nDivision by zero in / operation in Line "<<__LINE__<<std::endl;
+		throw val;
+	}
 	int p=this->size_x,q=this->size_y;
 	matrix<T> temp(p,q);
 	for(int i=0;i<p;i++){
@@ -111,8 +114,8 @@ matrix<T> matrix<T>::operator / (const F& val){
 }
 //OPERATOR +
 template<typename T>
-template<typename F>
-matrix<T> matrix<T>::operator + (matrix<F>& other){
+/*template<typename F>*/
+matrix<T> matrix<T>::operator + (matrix<T>& other){
 	if(this->size_x!=other.dim().first && this->size_y!=other.dim().second){
 		throw "Dimensions are not valid";
 	}
@@ -149,7 +152,10 @@ matrix<T> matrix<T>::operator - (matrix<F>& other){
 template<typename T>
 template<typename F>
 matrix<T> matrix<T>::operator % (const F& val){
-	if(val==0) throw "Division by zero";
+	if(val==0){
+		std::cerr<<"In File "<<__FILE__<<"\nDivision by zero in % operation in Line "<<__LINE__<<std::endl;
+		throw val;
+	}
 	int p=this->size_x,q=this->size_y;
 	matrix<T> temp(p,q);
 	for(int i=0;i<p;i++){
@@ -167,7 +173,7 @@ template<typename F>
 void matrix<T>::operator *= (matrix<F>& other){
 	*this=*this*other;
 }
-//OPERATOR *= for consts
+//OPERATOR *= for constsṭ
 template<typename T>
 template<typename F>
 void matrix<T>::operator *= (const F& val){
@@ -182,7 +188,10 @@ void matrix<T>::operator *= (const F& val){
 template<typename T>
 template<typename F>
 void matrix<T>::operator /= (const F& val){
-	if(val==0) throw "Division by zero";
+	if(val==0){
+		std::cerr<<"In File "<<__FILE__<<"\nDivision by zero in /= operation in Line "<<__LINE__<<std::endl;
+		throw val;
+	}
 	for(int i=0;i<this->size_x;i++){
 		for (int j = 0; j <this->size_y; j++)
 		{
@@ -226,7 +235,10 @@ void matrix<T>::operator -= (matrix<F>& other){
 template<typename T>
 template<typename F>
 void matrix<T>::operator %= (const F& val){
-	if(val==0) throw "Division by zero";
+	if(val==0){
+		std::cerr<<"In File "<<__FILE__<<"\nDivision by zero in %= operation in Line "<<__LINE__<<std::endl;
+		throw val;
+	}
 	for(int i=0;i<this->size_x;i++){
 		for (int j = 0; j <this->size_y; j++)
 		{
@@ -276,7 +288,7 @@ matrix<F2> matrix<T>::mod_exp(F1 n,F2 MOD){
 			temp(i,j)=this->__array[i][j];
 		}
 	}
-
+	ans.print();
 	while(n){
 		if(n&1){
 			ans*=temp;
@@ -286,11 +298,12 @@ matrix<F2> matrix<T>::mod_exp(F1 n,F2 MOD){
 		temp%=MOD;
 		n/=2.0;
 	}
+
 	return ans;
 }
 
-/*int main(){
+int main(){
 	matrix<long> a(2,2,4);
-	a/=2.0;
-	a.print();
-}*/
+	auto b=a+a;
+	b.print();
+}
