@@ -44,7 +44,7 @@ public:
 	template<typename F>
 	matrix<T> exp(F);
 	template<typename F1,typename F2>
-	matrix<T> mod_exp(F1 ,F2);
+	matrix<F2> mod_exp(F1 ,F2); //
 private:
 	T** __array;
 	int size_x;

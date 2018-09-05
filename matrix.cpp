@@ -5,7 +5,7 @@ template <typename T>
 void matrix<T>::print(){
 	for(int i=0;i<size_x;i++){
 		for(int j=0;j<size_y;j++){
-			std::cout<<____array[i][j]<<' ';
+			std::cout<<__array[i][j]<<' ';
 		}
 		std::cout<<std::endl;
 	}
@@ -171,31 +171,68 @@ void matrix<T>::operator *= (matrix<F>& other){
 template<typename T>
 template<typename F>
 void matrix<T>::operator *= (const F& val){
-	*this=*this*val;
+	for(int i=0;i<this->size_x;i++){
+		for (int j = 0; j <this->size_y; j++)
+		{
+			this->__array[i][j]*=val;
+		}
+	}
 }
 //OPERATOR *= for consts
 template<typename T>
 template<typename F>
 void matrix<T>::operator /= (const F& val){
-	*this=*this/val;
+	if(val==0) throw "Division by zero";
+	for(int i=0;i<this->size_x;i++){
+		for (int j = 0; j <this->size_y; j++)
+		{
+			this->__array[i][j]/=val;
+		}
+	}
 }
 //OPERATOR +=
 template<typename T>
 template<typename F>
 void matrix<T>::operator += (matrix<F>& other){
-	*this=*this+other;
+	if(this->size_x!=other.dim().first && this->size_y!=other.dim().second){
+		throw "Dimensions are not valid";
+	}
+	else{
+		int p=this->size_x,q=this->size_y;
+		for(int i=0;i<p;i++){
+			for(int j=0;j<q;j++){
+				this->__array[i][j]+=other(i,j);
+			}
+		}
+	}
 }
 //OPERATOR -=
 template<typename T>
 template<typename F>
 void matrix<T>::operator -= (matrix<F>& other){
-	*this=*this-other;
+	if(this->size_x!=other.dim().first && this->size_y!=other.dim().second){
+		throw "Dimensions are not valid";
+	}
+	else{
+		int p=this->size_x,q=this->size_y;
+		for(int i=0;i<p;i++){
+			for(int j=0;j<q;j++){
+				this->__array[i][j]-=other(i,j);
+			}
+		}
+	}
 }
 //OPERATOR %=
 template<typename T>
 template<typename F>
 void matrix<T>::operator %= (const F& val){
-	*this=*this%val;
+	if(val==0) throw "Division by zero";
+	for(int i=0;i<this->size_x;i++){
+		for (int j = 0; j <this->size_y; j++)
+		{
+			this->__array[i][j]%=val;
+		}
+	}
 }
 //--------------------------//
 
@@ -229,12 +266,15 @@ matrix<T> matrix<T>::exp(F n){
 
 template<typename T>
 template<typename F1,typename F2>
-matrix<T> matrix<T>::mod_exp(F1 n,F2 MOD){
+matrix<F2> matrix<T>::mod_exp(F1 n,F2 MOD){
 	if(MOD==0) throw "Division by zero";
-	matrix<T> ans(this->size_x,this->size_y);
-	matrix<T> temp=*this;
+	matrix<F2> ans(this->size_x,this->size_y);
+	matrix<F2> temp(this->size_x,this->size_y);
 	for(int i=0;i<this->size_x;i++){
 		ans(i,i)=1LL;
+		for(int j=0;j<this->size_y;j++){
+			temp(i,j)=this->__array[i][j];
+		}
 	}
 
 	while(n){
@@ -249,7 +289,8 @@ matrix<T> matrix<T>::mod_exp(F1 n,F2 MOD){
 	return ans;
 }
 
-int main(){
+/*int main(){
 	matrix<long> a(2,2,4);
-	a/=2.0.print();
-}
+	a/=2.0;
+	a.print();
+}*/
