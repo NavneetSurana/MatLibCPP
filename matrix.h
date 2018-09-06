@@ -7,23 +7,23 @@ class matrix{
 public:
 //CONSTRUCTORS
 	matrix();
-	matrix(const int&,const int&);
-	matrix(const int&,const int&,const int&);
+	matrix(const int&,const T&);
+	matrix(const int&,const int&,const T&);
 //DESTURCTOR
 	~matrix();
 //OPERATOR OVERLOADING
 	inline T& operator () (const int& ,const int& );
 	//matrix<T>& operator = (matrix<T>&);
-	//template<typename F>
-	matrix<T> operator + (matrix<T>&);
 	template<typename F>
-	matrix<T> operator - (matrix<F>&);
+	decltype(auto) operator + (matrix<F>&);
 	template<typename F>
-	matrix<T> operator * (matrix<F>&);
+	decltype(auto) operator - (matrix<F>&);
 	template<typename F>
-	matrix<T> operator / (const F&);
+	decltype(auto) operator * (matrix<F>&);
 	template<typename F>
-	matrix<T> operator * (const F&);
+	decltype(auto) operator / (const F&);
+	template<typename F>
+	decltype(auto) operator * (const F& val);
 	template<typename F>
 	matrix<T> operator % (const F&);
 	template<typename F>
@@ -45,7 +45,7 @@ public:
 	template<typename F>
 	matrix<T> exp(F);
 	template<typename F1,typename F2>
-	matrix<F2> mod_exp(F1 ,F2); //
+	matrix<T> mod_exp(F1 ,F2); //
 private:
 	std::vector<std::vector<T>> __array;
 	int size_x;
