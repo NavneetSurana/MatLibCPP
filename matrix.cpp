@@ -274,18 +274,20 @@ matrix<T> matrix<T>::exp(F n) {
 	while (n) {
 		if (n & 1) ans *= temp;
 		temp *= temp;
-		n /= 2.0;
+		n>>=1LL;
 	}
 	return ans;
 }
-
+//MODULAR EXPONENTIATION
 template<typename T>
 template<typename F1, typename F2>
 matrix<T> matrix<T>::mod_exp(F1 n, F2 MOD) {
 	if (MOD == 0) throw "Division by zero";
 	matrix<T> ans(this->size_x, this->size_y);
 	matrix<T> temp=*this;
-	ans.print();
+	for (int i = 0; i < this->size_x; i++) {
+		ans(i, i) = 1LL;
+	}
 	while (n) {
 		if (n & 1) {
 			ans *= temp;
@@ -293,7 +295,7 @@ matrix<T> matrix<T>::mod_exp(F1 n, F2 MOD) {
 		}
 		temp *= temp;
 		temp %= MOD;
-		n /= 2.0;
+		n>>=1LL;
 	}
 
 	return ans;
