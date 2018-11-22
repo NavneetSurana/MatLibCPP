@@ -40,7 +40,7 @@ A MATRIX library for C++ users
 		Matrix a and c will become:
 		10 10
 		10 10
-  ## Matrix Substration
+  ## Matrix Subtraction
 	matrix<typename> :: matrix<typename> operator - or -= (matrix<typename> & val)
 	
 	Eg:
