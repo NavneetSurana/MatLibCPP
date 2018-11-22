@@ -2,6 +2,7 @@
 A MATRIX library for C++ users
 
 # Features
+Following are the features of **MatLibCpp**
 ## Matrix Initialization
 
 * **matrix \<typename> a(row_size,column_size, const initial_value)**
