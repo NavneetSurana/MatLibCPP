@@ -45,9 +45,9 @@ Following are the features of **MatLibCpp**
 		Matrix a and c will become:
 		10 10
 		10 10
-## Matrix Substration
+## Matrix Subtraction
 * **matrix \<typename> :: matrix \<typename> operator - or -= (matrix \<typename> & val)**
-	
+
 	Eg:
 		
 		matrix <int> a(2, 2, 5),b(2, 2, 4);
