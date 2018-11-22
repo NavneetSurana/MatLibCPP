@@ -4,7 +4,7 @@ A MATRIX library for C++ users
 # Features
 ## Matrix Initialization
 
-* matrix \<typename> a(row_size,column_size, const initial_value)
+* **matrix \<typename> a(row_size,column_size, const initial_value)**
 	
 	Eg:	
 		
@@ -14,7 +14,7 @@ A MATRIX library for C++ users
 		4 4 
 		4 4
 		
-* matrix \<typename> a(row_size,column_size)
+* **matrix \<typename> a(row_size,column_size)**
 	
 	Eg:
 		
@@ -24,16 +24,16 @@ A MATRIX library for C++ users
 		0 0
 		0 0
 		
-* matrix \<typename> a;
+* **matrix \<typename> a;**
 	
 	Eg:
 		
 		matrix <int> a;
 	
 ## Accessing the element of ith row and jth column:
-* a(i,j) will give the required element
+* **a(i,j) will give the required element**
 ## Matrix Addition
-* matrix \<typename> :: matrix \<typename> operator + or += (matrix \<typename> & val)
+* **matrix \<typename> :: matrix \<typename> operator + or += (matrix \<typename> & val)**
 	
 	Eg:
 		
@@ -45,7 +45,7 @@ A MATRIX library for C++ users
 		10 10
 		10 10
 ## Matrix Substration
-* matrix \<typename> :: matrix \<typename> operator - or -= (matrix \<typename> & val)
+* **matrix \<typename> :: matrix \<typename> operator - or -= (matrix \<typename> & val)**
 	
 	Eg:
 		
@@ -57,7 +57,7 @@ A MATRIX library for C++ users
 		1 1
 		1 1
 ## Matrix Multiplication
-* matrix \<typename> :: matrix \<typename> operator * or *= (matrix \<typename> & val)
+* **matrix \<typename> :: matrix \<typename> operator \* or \*= (matrix \<typename> & val)**
 	
 	Eg:
 		
@@ -70,7 +70,7 @@ A MATRIX library for C++ users
 		4 4
 
 ## Matrix Multiplication with scalar
-* matrix \<typename> :: void operator * or *= (const typename& val)
+* **matrix \<typename> :: void operator \* or \*= (const typename& val)**
 	
 	Eg:
 		
@@ -86,7 +86,7 @@ A MATRIX library for C++ users
 		4.0 4.0
 		4.0 4.0
 ## Matrix Division with scalar
-* matrix \<typename> :: void operator / or /= (const typename& val)
+* **matrix \<typename> :: void operator / or /= (const typename& val)**
 	
 	Eg:
 		
@@ -102,7 +102,7 @@ A MATRIX library for C++ users
 		0.5 0.5
 		0.5 0.5
 ## Matrix Mudulo with scalar
-* matrix \<typename> :: void operator % or %= (const typename& val)
+* **matrix \<typename> :: void operator % or %= (const typename& val)**
 	
 	Eg:
         	
@@ -114,7 +114,7 @@ A MATRIX library for C++ users
 		2 2
 		2 2
 ## Matrix Exponentiation
-* matrix \<typename> :: matrix \<typename> exp(exponent)
+* **matrix \<typename> :: matrix \<typename> exp(exponent)**
 	
 	Eg:
 		
@@ -125,7 +125,7 @@ A MATRIX library for C++ users
 		8 8
 		8 8
 ## Matrix Modular_Exponentiation
-* matrix \<typename> :: matrix \<typename> mod_exp(exponent,MOD)
+* **matrix \<typename> :: matrix \<typename> mod_exp(exponent,MOD)**
 	
 	Eg:
 		
