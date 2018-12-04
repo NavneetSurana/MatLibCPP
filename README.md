@@ -1,10 +1,13 @@
-# MatLibCPP
+MatLibCPP
+===
 A MATRIX library for C++ users
 
 # Features
-Following are the features of **MatLibCpp**
-## Matrix Initialization
 
+Following are the features of **MatLibCpp**
+
+Matrix Initialization
+---
 * **matrix \<typename> a(row_size,column_size, const initial_value)**
 	
 	Eg:	
@@ -31,9 +34,12 @@ Following are the features of **MatLibCpp**
 		
 		matrix <int> a;
 	
-## Accessing the element of ith row and jth column:
+Accessing the element of ith row and jth column:
+---
 * **a(i,j) will give the required element**
-## Matrix Addition
+
+Matrix Addition
+---
 * **matrix \<typename> :: matrix \<typename> operator + or += (matrix \<typename> & val)**
 	
 	Eg:
@@ -45,7 +51,9 @@ Following are the features of **MatLibCpp**
 		Matrix a and c will become:
 		10 10
 		10 10
-## Matrix Subtraction
+		
+Matrix Subtraction
+---
 * **matrix \<typename> :: matrix \<typename> operator - or -= (matrix \<typename> & val)**
 
 	Eg:
@@ -57,7 +65,9 @@ Following are the features of **MatLibCpp**
 		Matrix a and c will become:
 		1 1
 		1 1
-## Matrix Multiplication
+		
+Matrix Multiplication
+---
 * **matrix \<typename> :: matrix \<typename> operator \* or \*= (matrix \<typename> & val)**
 	
 	Eg:
@@ -70,7 +80,8 @@ Following are the features of **MatLibCpp**
 		4 4
 		4 4
 
-## Matrix Multiplication with scalar
+Matrix Multiplication with scalar
+---
 * **matrix \<typename> :: void operator \* or \*= (const typename& val)**
 	
 	Eg:
@@ -86,7 +97,9 @@ Following are the features of **MatLibCpp**
 		Matric c:
 		4.0 4.0
 		4.0 4.0
-## Matrix Division with scalar
+		
+Matrix Division with scalar
+---
 * **matrix \<typename> :: void operator / or /= (const typename& val)**
 	
 	Eg:
@@ -102,7 +115,8 @@ Following are the features of **MatLibCpp**
 		Matric c is:
 		0.5 0.5
 		0.5 0.5
-## Matrix Mudulo with scalar
+Matrix Mudulo with scalar
+---
 * **matrix \<typename> :: void operator % or %= (const typename& val)**
 	
 	Eg:
@@ -114,7 +128,8 @@ Following are the features of **MatLibCpp**
 		Matrix a and c will be:
 		2 2
 		2 2
-## Matrix Exponentiation
+Matrix Exponentiation
+---
 * **matrix \<typename> :: matrix \<typename> exp(exponent)**
 	
 	Eg:
@@ -125,7 +140,8 @@ Following are the features of **MatLibCpp**
 		Matrix c is:
 		8 8
 		8 8
-## Matrix Modular_Exponentiation
+Matrix Modular_Exponentiation
+---
 * **matrix \<typename> :: matrix \<typename> mod_exp(exponent,MOD)**
 	
 	Eg:
@@ -137,7 +153,8 @@ Following are the features of **MatLibCpp**
 		Matrix c is:
 		2 2
 		2 2
- # To Do's
+ To Do's
+ ---
    * Matrix transpose
    * Matrix inverse
    * Currently thinking of more
