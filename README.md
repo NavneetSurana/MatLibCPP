@@ -128,9 +128,9 @@ Matrix Mudulo with scalar
 		Matrix a and c will be:
 		2 2
 		2 2
-Matrix Exponentiation
+Matrix Exponentiation With or With Modulo
 ---
-* **matrix \<typename> :: matrix \<typename> exp(exponent)**
+* **matrix \<typename> :: matrix \<typename> exp(exponent, MOD=-1)**
 	
 	Eg:
 		
@@ -140,19 +140,11 @@ Matrix Exponentiation
 		Matrix c is:
 		8 8
 		8 8
-Matrix Modular_Exponentiation
----
-* **matrix \<typename> :: matrix \<typename> mod_exp(exponent,MOD)**
-	
-	Eg:
-		
-		matrix <int> a(2,2,2);
-		int MOD=3;
-		auto c = a.mod_exp(2,MOD);
+		auto c = a.exp(2,3);
 		
 		Matrix c is:
-		2 2
-		2 2
+		3 3
+		3 3
  To Do's
  ---
    * Matrix transpose

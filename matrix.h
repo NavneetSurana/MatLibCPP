@@ -1,6 +1,5 @@
 #ifndef __MATRIX_H
 #define __MATRIX_H
-#include <utility>
 #include <vector>
 template<typename T>
 class matrix{
@@ -43,12 +42,11 @@ public:
 //OTHERS
 	const std::pair<int,int> dim();
 	template<typename F>
-	matrix<T> exp(F);
-	template<typename F1,typename F2>
-	matrix<T> mod_exp(F1 ,F2); //
+	matrix<T> exp(F,long long int MOD=-1);
 private:
 	std::vector<std::vector<T>> __array;
 	int size_x;
 	int size_y;
+	long long int __mod;
 };
 #endif //MATRIX_H

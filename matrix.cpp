@@ -1,4 +1,5 @@
-#include "matrix.h"
+#include <matrix.h>
+#include <utility>
 #include <iostream>
 template <typename T>
 void matrix<T>::print() {
@@ -17,16 +18,17 @@ template <typename T>
 matrix<T>::matrix() {
 	this->size_x = 0;
 	this->size_y = 0;
+	this->__mod  = 0;
 }
 template <typename T>
-matrix<T>::matrix(const int& n, const T& m) : size_x(n), size_y(m) {
+matrix<T>::matrix(const int& n, const T& m) : size_x(n), size_y(m), __mod(0) {
 	__array.resize(n);
 	for (int i = 0; i < n; i++) {
 		__array[i].resize(m);
 	}
 }
 template <typename T>
-matrix<T>::matrix(const int& n, const int& m, const T& val) : size_x(n), size_y(m) {
+matrix<T>::matrix(const int& n, const int& m, const T& val) : size_x(n), size_y(m), __mod(0) {
 	__array.resize(n);
 	for (int i = 0; i < n; i++) {
 		__array[i].resize(m,val);
@@ -57,13 +59,25 @@ decltype(auto) matrix<T>::operator * (matrix<F>& other) {
 		throw "Dimensions are not valid";
 	}
 	else {
-
 		int p = this->size_x, q = this->size_y, r = other.dim().second;
-		matrix<decltype(this->__array[0][0] * other(0, 0))> temp(p, q);
-		for (int i = 0; i < p; i++) {
-			for (int j = 0; j < r; j++) {
-				for (int k = 0; k < q; k++) {
-					temp(i, j) += this->__array[i][k] * other(k, j);
+		matrix<decltype(this->__array[0][0] * other(0, 0))> temp(p, r);
+		if(__mod==0){
+			for (int i = 0; i < p; i++) {
+				for (int j = 0; j < r; j++) {
+					for (int k = 0; k < q; k++) {
+						temp(i, j) += this->__array[i][k] * other(k, j);
+					}
+				}
+			}
+		}
+		else{
+			for (int i = 0; i < p; i++) {
+				for (int j = 0; j < r; j++) {
+					for (int k = 0; k < q; k++) {
+						temp(i, j) += ( ( (this->__array[i][k] + __mod) % __mod ) *
+									  ( ( (other(k, j)+__mod) + __mod) % __mod) ) % __mod;						
+						temp(i,j)  %= __mod;
+					}
 				}
 			}
 		}
@@ -163,13 +177,25 @@ void matrix<T>::operator *= (matrix<F>& other) {
 		throw "Dimensions are not valid";
 	}
 	else {
-
 		int p = this->size_x, q = this->size_y, r = other.dim().second;
-		matrix<T> temp(p, q);
-		for (int i = 0; i < p; i++) {
-			for (int j = 0; j < r; j++) {
-				for (int k = 0; k < q; k++) {
-					temp(i, j) += this->__array[i][k] * other(k, j);
+		matrix<T> temp(p, r);
+		if(__mod==0){
+			for (int i = 0; i < p; i++) {
+				for (int j = 0; j < r; j++) {
+					for (int k = 0; k < q; k++) {
+						temp(i, j) += this->__array[i][k] * other(k, j);
+					}
+				}
+			}
+		}
+		else{
+			for (int i = 0; i < p; i++) {
+				for (int j = 0; j < r; j++) {
+					for (int k = 0; k < q; k++) {
+						temp(i, j) += ( ( (this->__array[i][k] + __mod) % __mod ) *
+									  ( ( (other(k, j)+__mod) + __mod) % __mod) ) % __mod;
+						temp(i,j)  %= __mod;
+					}
 				}
 			}
 		}
@@ -261,49 +287,22 @@ const std::pair<int, int> matrix<T>::dim() {
 	return std::make_pair(size_x, size_y);
 	//
 }
-//EXPONENTIATION
+//EXPONENTIATION WITH OR WITHOUT MODULO
 template<typename T>
 template<typename F>
-matrix<T> matrix<T>::exp(F n) {
+matrix<T> matrix<T>::exp(F n, long long int MOD) {
+	if (MOD == 0) throw "Division by zero";
+	else if (MOD!=-1) this->__mod=MOD;
 	matrix<T> ans(this->size_x, this->size_y);
 	matrix<T> temp = *this;
 	for (int i = 0; i < this->size_x; i++) {
 		ans(i, i) = 1LL;
 	}
-
 	while (n) {
 		if (n & 1) ans *= temp;
 		temp *= temp;
 		n>>=1LL;
 	}
+	this->__mod=0;
 	return ans;
-}
-//MODULAR EXPONENTIATION
-template<typename T>
-template<typename F1, typename F2>
-matrix<T> matrix<T>::mod_exp(F1 n, F2 MOD) {
-	if (MOD == 0) throw "Division by zero";
-	matrix<T> ans(this->size_x, this->size_y);
-	matrix<T> temp=*this;
-	for (int i = 0; i < this->size_x; i++) {
-		ans(i, i) = 1LL;
-	}
-	while (n) {
-		if (n & 1) {
-			ans *= temp;
-			ans %= MOD;
-		}
-		temp *= temp;
-		temp %= MOD;
-		n>>=1LL;
-	}
-
-	return ans;
-}
-int main() {
-	matrix<long> a(2, 2,1);
-	matrix<double> b(2, 2,2.2);
-	b.print();
-	b*=b;
-	b.print();
 }
