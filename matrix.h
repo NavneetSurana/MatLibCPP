@@ -8,11 +8,12 @@ public:
 	matrix();
 	matrix(const int&,const T&);
 	matrix(const int&,const int&,const T&);
+	matrix(const std:: vector< std ::vector<T> > & );
+	matrix(const std:: initializer_list< std:: initializer_list<T> > & );
 //DESTURCTOR
 	~matrix();
 //OPERATOR OVERLOADING
 	inline T& operator () (const int& ,const int& );
-	//matrix<T>& operator = (matrix<T>&);
 	template<typename F>
 	decltype(auto) operator + (matrix<F>&);
 	template<typename F>

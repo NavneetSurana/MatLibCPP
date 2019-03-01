@@ -34,6 +34,20 @@ matrix<T>::matrix(const int& n, const int& m, const T& val) : size_x(n), size_y(
 		__array[i].resize(m,val);
 	}
 }
+
+template <typename T>
+matrix<T> :: matrix(const std:: vector< std:: vector<T> > & l) :
+size_x(l.size()), size_y((*l.begin()).size()), __mod(0){
+	__array=l;
+}
+
+template <typename T>
+matrix<T> :: matrix(const std:: initializer_list< std:: initializer_list<T> > & l) :
+size_x(l.size()), size_y((*l.begin()).size()), __mod(0){
+	for(const auto it: l){
+		__array.push_back(it);
+	}
+}
 //---------------------------------//
 
 	//DESTURCTOR

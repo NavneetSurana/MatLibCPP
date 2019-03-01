@@ -33,7 +33,22 @@ Matrix Initialization
 	Eg:
 		
 		matrix <int> a;
+* **matrix \<typename> a(const std :: vector \< std :: vector \ <typename> > &)**
+	Eg:	
+		vector <vector <int> > b={{1,2},{2,3}}
+		matrix <int> a = b;
 	
+		Matrix a will be:
+		1 2
+		2 3
+* **matrix \<typename> a(const std :: initializer_list \< std :: initializer_list \ <typename> > &)**
+	Eg:	
+		matrix <int> a = {{1,2},{2,3}};
+	
+		Matrix a will be:
+		1 2
+		2 3
+
 Accessing the element of ith row and jth column:
 ---
 * **a(i,j) will give the required element**
