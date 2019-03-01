@@ -34,7 +34,9 @@ Matrix Initialization
 		
 		matrix <int> a;
 * **matrix \<typename> a(const std :: vector \< std :: vector \<typename> > &)**
+	
 	Eg:	
+		
 		vector <vector <int> > b={{1,2},{2,3}}
 		matrix <int> a = b;
 	
@@ -42,7 +44,9 @@ Matrix Initialization
 		1 2
 		2 3
 * **matrix \<typename> a(const std :: initializer_list \< std :: initializer_list \<typename> > &)**
+	
 	Eg:	
+		
 		matrix <int> a = {{1,2},{2,3}};
 	
 		Matrix a will be:
