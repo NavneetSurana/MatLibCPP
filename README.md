@@ -1,4 +1,4 @@
-MatLibCPP
+MatLibCPP (A simple matrix library)
 ===
 A MATRIX library for C++ users
 
